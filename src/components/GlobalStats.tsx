@@ -1,14 +1,14 @@
 import React from 'react';
 import { Card } from './Card';
-import { Globe, Award, Package, Settings } from 'lucide-react';
+import { MapPin, Award, Package, Settings } from 'lucide-react';
 
 export const GlobalStats: React.FC = () => {
   const stats = [
     {
-      icon: Globe,
-      number: '35+',
-      label: 'Countries Served',
-      description: 'Trusted partners across 5 continents'
+      icon: MapPin,
+      number: 'Pan-India',
+      label: 'Service Network',
+      description: 'Serving clients across 28 states'
     },
     {
       icon: Award,
@@ -20,7 +20,7 @@ export const GlobalStats: React.FC = () => {
       icon: Package,
       number: '15,000+',
       label: 'Doors Supplied',
-      description: 'Successful global supply partnerships'
+      description: 'Successful supply partnerships across India'
     },
     {
       icon: Settings,
@@ -35,10 +35,10 @@ export const GlobalStats: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#4B3A2A] mb-6 tracking-tight">
-            Proven Export Performance
+            Proven Industry Performance
           </h2>
           <p className="text-xl text-[#1A1A1A]/70 max-w-2xl mx-auto">
-            Trusted by international partners for consistent quality and professional service
+            Trusted by clients nationwide for consistent quality and professional service
           </p>
         </div>
 

@@ -18,8 +18,8 @@ export const TrustIndicators: React.FC = () => {
     },
     {
       icon: Truck,
-      title: 'Export-Ready Logistics',
-      description: 'Complete documentation and shipping support worldwide',
+      title: 'Pan-India Logistics',
+      description: 'Safe and timely delivery of our premium doors to any location across India',
       color: 'text-[#C3A572]'
     },
     {
@@ -32,13 +32,13 @@ export const TrustIndicators: React.FC = () => {
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-[#4B3A2A] mb-4 tracking-tight">
             Why Choose Our UPVC Door Supply Services
           </h2>
           <p className="text-xl text-[#1A1A1A]/70 max-w-2xl mx-auto">
-            Trusted by importers worldwide for quality, reliability, and professional service
+            Trusted by architects and homeowners across India for quality, reliability, and professional service
           </p>
         </div>
 

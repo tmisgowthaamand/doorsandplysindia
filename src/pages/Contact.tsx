@@ -23,13 +23,13 @@ const contactSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().optional(),
   message: z.string().min(10, 'Message must be at least 10 characters'),
-  isExportInquiry: z.boolean(),
+  isBulkInquiry: z.boolean(),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
 
 interface ContactProps {
-  onNavigate?: (page: 'home' | 'products' | 'product-detail' | 'export' | 'quote' | 'checkout' | 'about' | 'contact', productId?: string) => void;
+  onNavigate?: (page: any, productId?: string) => void;
 }
 
 export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
@@ -44,7 +44,7 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
-      isExportInquiry: false,
+      isBulkInquiry: false,
     },
   });
 
@@ -55,15 +55,16 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    
+
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      // await new Promise(resolve => setTimeout(resolve, 2000));
+      console.log('Form data:', data);
+
       setSubmitted(true);
       reset();
       toast.success('Message sent successfully!');
-      
+
       // Reset success state after 5 seconds
       setTimeout(() => setSubmitted(false), 5000);
     } catch (error) {
@@ -76,7 +77,7 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-[#F5F5F5] font-inter antialiased">
       <Navigation onNavigate={onNavigate} />
-      
+
       {/* Main Content */}
       <main className="pt-20">
         <Container size="7xl" padding="md" className="pt-8">
@@ -89,7 +90,7 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
           <section aria-labelledby="contact-hero" className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
             <h1 id="contact-hero" className="sr-only">Contact Doors & Plys India</h1>
             {/* Background Image */}
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{
                 backgroundImage: 'url(https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)'
@@ -109,9 +110,9 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight max-w-4xl mx-auto leading-tight">
                   Get in Touch with Doors & Plys India
                 </h1>
-                
+
                 <p className="text-xl sm:text-2xl text-white/95 mb-8 max-w-3xl mx-auto leading-relaxed font-medium">
-                  Have a question, export inquiry, or need support? We're here to help.
+                  Have a question, bulk inquiry, or need support? We're here to help.
                 </p>
 
                 <Alert variant="info" className="max-w-md mx-auto">
@@ -144,7 +145,7 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                       <Alert variant="info" className="mb-6">
                         <div>
                           <h4 className="font-semibold text-lg mb-1">Message Received</h4>
-                          <p>Our export specialists will respond within 24 hours with the information you need.</p>
+                          <p>Our supply specialists will respond within 24 hours with the information you need.</p>
                         </div>
                       </Alert>
                     )}
@@ -185,9 +186,9 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                       />
 
                       <FormCheckbox
-                        label="This is an export/international inquiry"
-                        {...register('isExportInquiry')}
-                        description="Select if you need export quotations, international shipping, or bulk order information"
+                        label="This is a bulk order inquiry"
+                        {...register('isBulkInquiry')}
+                        description="Select if you need bulk quotations, pan-India shipping, or wholesale order information"
                       />
 
                       <LoadingButton
@@ -202,7 +203,7 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                 </motion.div>
 
                 {/* Direct Contact Information */}
-                <aside
+                <motion.aside
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
@@ -238,7 +239,7 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                         </div>
                         <div>
                           <h3 className="font-semibold text-accessible-text-primary mb-2">Phone</h3>
-                          <a 
+                          <a
                             href={`tel:${CONTACT_INFO.phone}`}
                             className="text-accessible-text-secondary hover:text-[#C3A572] transition-colors duration-200 font-medium"
                           >
@@ -257,14 +258,22 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                         </div>
                         <div>
                           <h3 className="font-semibold text-accessible-text-primary mb-2">Email</h3>
-                          <a 
-                            href={`mailto:${CONTACT_INFO.email}`}
-                            className="text-accessible-text-secondary hover:text-[#C3A572] transition-colors duration-200 font-medium"
-                          >
-                            {CONTACT_INFO.email}
-                          </a>
+                          <div className="flex flex-col gap-1">
+                            <a
+                              href={`mailto:${CONTACT_INFO.email}`}
+                              className="text-accessible-text-secondary hover:text-[#C3A572] transition-colors duration-200 font-medium"
+                            >
+                              {CONTACT_INFO.email}
+                            </a>
+                            <a
+                              href={`mailto:${CONTACT_INFO.alternateEmail}`}
+                              className="text-accessible-text-secondary hover:text-[#C3A572] transition-colors duration-200 font-medium"
+                            >
+                              {CONTACT_INFO.alternateEmail}
+                            </a>
+                          </div>
                           <p className="text-sm text-accessible-text-muted mt-2 leading-relaxed">
-                            Professional response within 24 hours
+                            We respond within 24 hours
                           </p>
                         </div>
                       </div>
@@ -276,7 +285,7 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                         </div>
                         <div>
                           <h3 className="font-semibold text-accessible-text-primary mb-2">WhatsApp</h3>
-                          <a 
+                          <a
                             href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/[^0-9]/g, '')}`}
                             target="_blank"
                             rel="noopener noreferrer"
@@ -297,7 +306,7 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                     <h3 className="text-xl font-bold text-accessible-text-primary mb-4 tracking-tight">
                       Our Location
                     </h3>
-                    <div 
+                    <div
                       className="h-64 bg-cover bg-center rounded-xl"
                       style={{
                         backgroundImage: 'url(https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)'
@@ -307,12 +316,12 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                         <div className="text-center text-white">
                           <MapPin className="w-12 h-12 mx-auto mb-4" />
                           <p className="text-lg font-semibold">Coimbatore, Tamil Nadu</p>
-                          <p className="text-sm opacity-90">Manufacturing & Export Hub</p>
+                          <p className="text-sm opacity-90">Manufacturing Hub</p>
                         </div>
                       </div>
                     </div>
                   </Card>
-                </aside>
+                </motion.aside>
               </div>
             </div>
           </section>
@@ -328,24 +337,24 @@ export const Contact: React.FC<ContactProps> = ({ onNavigate }) => {
                     Ready for Professional UPVC Door Supply?
                   </h3>
                 </div>
-                
+
                 <p className="text-[#1A1A1A]/70 mb-6 max-w-2xl mx-auto">
-                  Get competitive pricing, complete export documentation, and reliable delivery for your UPVC door requirements.
+                  Get competitive pricing, quality assurance, and reliable delivery for your UPVC door requirements.
                 </p>
-                
-                <Button 
-                  variant="large" 
+
+                <Button
+                  variant="large"
                   onClick={() => onNavigate?.('quote')}
                   className="mx-auto"
                 >
-                  Get Export Quote
+                  Get Product Quote
                 </Button>
               </Card>
             </div>
           </section>
         </Container>
       </main>
-      
+
       <ProductsFooter onNavigate={onNavigate} />
     </div>
   );

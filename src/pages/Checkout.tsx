@@ -13,25 +13,24 @@ import { FormInput } from '../components/FormInput';
 import { FormTextarea } from '../components/FormTextarea';
 import { FormCheckbox } from '../components/FormCheckbox';
 import { LoadingButton } from '../components/LoadingButton';
-import { ExportBadge } from '../components/ExportBadge';
 import { ProductsFooter } from '../components/ProductsFooter';
 import { useCartStore } from '../store/cart';
 import { Container } from '../components/Container';
 import { Minus, Plus, X, Shield, Truck, Award } from 'lucide-react';
 import { CONTACT_INFO } from '../constants/contact';
 
-type NavigationPage = 'home' | 'products' | 'product-detail' | 'export' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions' | 'contact' | 'shipping-policy' | 'cancellation-refund-policy';
+type NavigationPage = 'home' | 'products' | 'product-detail' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions' | 'contact' | 'shipping-policy' | 'cancellation-refund-policy';
 
 const checkoutSchema = z.object({
   firstName: z.string().min(2, 'First name must be at least 2 characters'),
   lastName: z.string().min(2, 'Last name must be at least 2 characters'),
   email: z.string().email('Please enter a valid email address'),
   phone: z.string().min(10, 'Please enter a valid phone number'),
-  country: z.string().min(2, 'Please select your country'),
   address: z.string().min(10, 'Please enter your complete address'),
   city: z.string().min(2, 'Please enter your city'),
   state: z.string().min(2, 'Please enter your state'),
-  zipCode: z.string().min(3, 'Please enter your ZIP code'),
+  pincode: z.string().min(6, 'Please enter a valid 6-digit pincode'),
+  paymentMethod: z.literal('cod'),
   billingAddressSame: z.boolean(),
   billingAddress: z.string().optional(),
   specialInstructions: z.string().optional(),
@@ -65,10 +64,14 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutSchema),
-    defaultValues: loadFormData(),
+    defaultValues: {
+      ...loadFormData(),
+      paymentMethod: 'cod'
+    },
   });
 
   // Helper function to register form inputs with proper typing
@@ -79,20 +82,17 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
       name,
       required,
       ref,
-      onChange: (e: React.ChangeEvent<HTMLInputElement> | string) => {
-        // Handle both string and event inputs
-        const event = typeof e === 'string' ? { target: { value: e } } as React.ChangeEvent<HTMLInputElement> : e;
-        
-        // Call the original onChange from react-hook-form
-        onChange(event);
-        
+      onChange: (e: any) => {
+        const val = typeof e === 'string' ? e : e.target.value;
+        setValue(name, val, { shouldValidate: true });
+
         // Update local storage
         if (typeof window !== 'undefined') {
           const formValues = watch();
           localStorage.setItem('checkoutFormData', JSON.stringify(formValues));
         }
       },
-      onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
+      onBlur: (e: any) => {
         onBlur(e);
       },
     };
@@ -106,20 +106,17 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
       name,
       required,
       ref,
-      onChange: (e: React.ChangeEvent<HTMLTextAreaElement> | string) => {
-        // Handle both string and event inputs
-        const event = typeof e === 'string' ? { target: { value: e } } as React.ChangeEvent<HTMLTextAreaElement> : e;
-        
-        // Call the original onChange from react-hook-form
-        onChange(event);
-        
+      onChange: (e: any) => {
+        const val = typeof e === 'string' ? e : e.target.value;
+        setValue(name, val, { shouldValidate: true });
+
         // Update local storage
         if (typeof window !== 'undefined') {
           const formValues = watch();
           localStorage.setItem('checkoutFormData', JSON.stringify(formValues));
         }
       },
-      onBlur: (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      onBlur: (e: any) => {
         onBlur(e);
       },
     };
@@ -128,7 +125,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
   const billingAddressSame = watch('billingAddressSame');
 
   const breadcrumbItems = [
-    { label: 'Home', href: '#', onClick: () => onNavigate?.('home') },
+    { label: 'Home', href: '/', onClick: () => onNavigate?.('home') },
     { label: 'Checkout', active: true }
   ];
 
@@ -144,13 +141,13 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
 
   const onSubmit = async (data: CheckoutFormData) => {
     setIsSubmitting(true);
-    
+
     try {
       // Simulate API call with validation
       await new Promise<void>((resolve, reject) => {
         // Check if there are any validation errors
         const formIsValid = Object.keys(errors).length === 0;
-        
+
         if (formIsValid) {
           console.log('Submitting form data:', data);
           // Simulate network delay
@@ -159,18 +156,18 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
             const newOrderId = `DP${Date.now().toString().slice(-6)}`;
             setOrderId(newOrderId);
             setOrderSuccess(true);
-            
+
             // Clear cart and saved form data on successful submission
             clearCart();
-            
+
             // Clear saved form data from localStorage
             if (typeof window !== 'undefined') {
               localStorage.removeItem('checkoutFormData');
             }
-            
+
             // Show success message
             toast.success('Order placed successfully!');
-            
+
             resolve();
           }, 2000);
         } else {
@@ -178,7 +175,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
           reject(new Error('Form validation failed'));
         }
       });
-      
+
     } catch (error) {
       // Don't show error toast for validation errors as they're already shown inline
       if (error instanceof Error && error.message !== 'Form validation failed') {
@@ -250,9 +247,9 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                 Thank you for choosing Doors & Plys India!
               </h1>
               <p className="text-xl text-[#1A1A1A]/70 mb-8 max-w-2xl mx-auto">
-                Our supply team will get back to you shortly with shipping and confirmation details for your UPVC doors.
+                Our supply team will get back to you shortly with shipping and confirmation details for your UPVC doors order.
               </p>
-              
+
               <Card variant="basic" className="max-w-md mx-auto mb-8">
                 <div className="text-center">
                   <h3 className="font-bold text-[#4B3A2A] mb-2">Order Details</h3>
@@ -274,7 +271,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                   </div>
                 </div>
               </Card>
-              
+
               <div className="flex gap-4 justify-center">
                 <Button variant="large" onClick={() => onNavigate?.('products')}>
                   Continue Shopping
@@ -293,7 +290,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-[#F5F5F5] font-inter antialiased">
       <Navigation onNavigate={onNavigate} />
-      
+
       {/* Main Content */}
       <main role="main" className="pt-20">
         <Container size="7xl" padding="md" className="py-8">
@@ -308,7 +305,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
               UPVC Door Supply Order
             </h1>
             <p className="text-[#1A1A1A]/70 max-w-2xl mx-auto">
-              Complete your order with your trusted UPVC door supplier
+              Complete your order with India's trusted UPVC door manufacturer
             </p>
           </header>
 
@@ -330,7 +327,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                   <h4 className="text-2xl font-bold text-[#4B3A2A] mb-6">
                     Contact Information
                   </h4>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
                       <FormInput
@@ -349,7 +346,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                       />
                     </div>
                   </div>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <FormInput
@@ -364,7 +361,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                       <FormInput
                         label="Phone Number"
                         type="tel"
-                        placeholder="+1 (555) 123-4567"
+                        placeholder="+91-XXXXXXXXXX"
                         {...registerInput('phone')}
                         error={errors.phone?.message}
                       />
@@ -377,7 +374,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                   <h4 className="text-2xl font-bold text-[#4B3A2A] mb-6">
                     Shipping Address
                   </h4>
-                  
+
                   <div className="space-y-4">
                     <div>
                       <FormTextarea
@@ -398,7 +395,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                           error={errors.city?.message}
                         />
                       </div>
-                      
+
                       <div>
                         <FormInput
                           label="State/Province"
@@ -407,24 +404,19 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                           error={errors.state?.message}
                         />
                       </div>
-                      
+
                       <div>
                         <FormInput
-                          label="ZIP/Postal Code"
-                          placeholder="ZIP Code"
-                          {...registerInput('zipCode')}
-                          error={errors.zipCode?.message}
+                          label="Pincode"
+                          placeholder="6-digit pincode"
+                          {...registerInput('pincode')}
+                          error={errors.pincode?.message}
                         />
                       </div>
                     </div>
 
-                    <div>
-                      <FormInput
-                        label="Country"
-                        placeholder="Country"
-                        {...registerInput('country')}
-                        error={errors.country?.message}
-                      />
+                    <div className="bg-[#C3A572]/10 p-4 rounded-xl border border-[#C3A572]/20 text-sm italic">
+                      Currently serving all states across India 🇮🇳
                     </div>
                   </div>
                 </Card>
@@ -434,7 +426,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                   <h4 className="text-2xl font-bold text-[#4B3A2A] mb-6">
                     Billing Address
                   </h4>
-                  
+
                   <div className="space-y-4">
                     <FormCheckbox
                       label="Billing address is the same as shipping address"
@@ -455,16 +447,46 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                   </div>
                 </Card>
 
+                {/* Payment Method */}
+                <Card variant="basic">
+                  <h4 className="text-2xl font-bold text-[#4B3A2A] mb-6 flex items-center gap-2">
+                    <Shield className="w-6 h-6 text-[#C3A572]" />
+                    Payment Method
+                  </h4>
+
+                  <div className="space-y-4">
+                    <div
+                      className={`p-4 rounded-xl border-2 transition-all cursor-pointer flex items-center justify-between ${watch('paymentMethod') === 'cod' ? 'border-[#C3A572] bg-[#C3A572]/5' : 'border-white/20 bg-white/40'
+                        }`}
+                      onClick={() => setValue('paymentMethod', 'cod')}
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${watch('paymentMethod') === 'cod' ? 'border-[#C3A572]' : 'border-gray-400'
+                          }`}>
+                          {watch('paymentMethod') === 'cod' && <div className="w-3 h-3 bg-[#C3A572] rounded-full" />}
+                        </div>
+                        <div>
+                          <p className="font-bold text-[#4B3A2A]">Cash on Delivery (COD)</p>
+                          <p className="text-xs text-[#1A1A1A]/60">Pay when your UPVC doors arrive at your location</p>
+                        </div>
+                      </div>
+                      <Truck className="w-6 h-6 text-[#C3A572]" />
+                    </div>
+
+
+                  </div>
+                </Card>
+
                 {/* Special Instructions */}
                 <Card variant="basic">
                   <h4 className="text-2xl font-bold text-[#4B3A2A] mb-6">
                     Special Instructions
                   </h4>
-                  
+
                   <div>
                     <FormTextarea
                       label="Delivery Instructions (Optional)"
-                      placeholder="Any special delivery instructions or notes..."
+                      placeholder="Any specific instructions for local delivery or site access..."
                       {...registerTextarea('specialInstructions', false)}
                       rows={3}
                     />
@@ -494,26 +516,29 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                 <div className="space-y-4 mb-6">
                   {items.map((item) => (
                     <div key={item.product.id} className="flex items-center gap-4 p-4 bg-white/40 backdrop-blur-sm rounded-lg border border-white/20">
-                      <img
-                        src={item.product.image}
-                        alt={item.product.name}
-                        className="w-16 h-16 object-cover rounded-lg"
-                      />
-                      
+                      <div className="relative">
+                        <img
+                          src={item.product.image}
+                          alt={item.product.name}
+                          className="w-16 h-16 object-cover rounded-lg"
+                        />
+                        {item.product.isFeatured && (
+                          <div className="absolute top-0 right-0 bg-[#C3A572] text-white text-[10px] px-2 py-0.5 rounded-bl-lg font-bold">
+                            PREMIUM
+                          </div>
+                        )}
+                      </div>
+
                       <div className="flex-1">
-                        <div className="text-xs font-medium text-[#C3A572] uppercase tracking-wide mb-1">
+                        <div className="text-[10px] font-bold text-[#C3A572] uppercase tracking-wider mb-0.5">
                           {item.product.category}
                         </div>
-                        <h4 className="font-semibold text-[#4B3A2A] text-sm mb-1">
+                        <h4 className="font-bold text-[#4B3A2A] text-sm leading-tight mb-1">
                           {item.product.name}
                         </h4>
-                        <div className="text-lg font-bold text-[#4B3A2A]">
+                        <div className="text-base font-black text-[#4B3A2A]">
                           {item.product.price}
                         </div>
-                        
-                        {item.product.exportAvailable && (
-                          <ExportBadge type="available" className="mt-2" />
-                        )}
                       </div>
 
                       <div className="flex items-center gap-2">
@@ -525,11 +550,11 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                         >
                           <Minus className="w-4 h-4 text-[#4B3A2A]" />
                         </button>
-                        
+
                         <span className="w-8 text-center font-semibold text-[#4B3A2A]">
                           {item.quantity}
                         </span>
-                        
+
                         <button
                           type="button"
                           onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
@@ -579,7 +604,7 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
                     <div>
                       <Truck className="w-6 h-6 text-[#C3A572] mx-auto mb-2" />
                       <div className="text-xs font-medium text-[#1A1A1A]/70">
-                        Global Shipping
+                        Pan-India
                       </div>
                     </div>
                     <div>
@@ -595,8 +620,8 @@ export const Checkout: React.FC<CheckoutProps> = ({ onNavigate }) => {
           </section>
         </Container>
       </main>
-      
+
       <ProductsFooter onNavigate={onNavigate} />
-    </div>
+    </div >
   );
 };

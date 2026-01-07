@@ -1,19 +1,19 @@
 import React from 'react';
 import { Card } from './Card';
-import { Globe, Award, Package, Settings } from 'lucide-react';
+import { MapPin, Award, Package, Settings } from 'lucide-react';
 import { Container } from './Container';
 
 export const WhyChooseUs: React.FC = () => {
   const stats = [
     {
-      icon: Globe,
-      number: '35+',
-      label: 'Countries Shipped',
-      description: 'Global reach across continents'
+      icon: MapPin,
+      number: 'Pan-India',
+      label: 'Network',
+      description: 'Wide delivery network across India'
     },
     {
       icon: Award,
-      number: 'Globally Recognized',
+      number: 'IS Standard',
       label: 'Certified',
       description: 'Committed to Quality'
     },
@@ -21,7 +21,7 @@ export const WhyChooseUs: React.FC = () => {
       icon: Package,
       number: '10,000+',
       label: 'Orders Fulfilled',
-      description: 'Trusted by thousands worldwide'
+      description: 'Trusted by thousands across India'
     },
     {
       icon: Settings,
@@ -39,7 +39,7 @@ export const WhyChooseUs: React.FC = () => {
             Your Reliable UPVC Door Supply Partner
           </h2>
           <p className="text-xl text-accessible-text-secondary leading-relaxed">
-            Trusted by importers worldwide for consistent quality, competitive pricing, and professional export services
+            Trusted by clients across India for consistent quality, competitive pricing, and professional supply services
           </p>
         </div>
 

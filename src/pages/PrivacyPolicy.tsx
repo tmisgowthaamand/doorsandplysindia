@@ -2,11 +2,11 @@ import React from 'react';
 import { Navigation } from '../components/Navigation';
 import { Breadcrumb } from '../components/Breadcrumb';
 // Removed unused import
-import { Shield, Lock, Eye, FileText } from 'lucide-react';
+import { Lock, Eye, FileText } from 'lucide-react';
 import { CONTACT_INFO } from '../constants/contact';
 
 interface PrivacyPolicyProps {
-  onNavigate?: (page: 'home' | 'products' | 'product-detail' | 'export' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions' | 'contact', productId?: string) => void;
+  onNavigate?: (page: 'home' | 'products' | 'product-detail' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions' | 'contact', productId?: string) => void;
 }
 
 export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
@@ -18,7 +18,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-[#F5F5F5] font-inter antialiased">
       <Navigation onNavigate={onNavigate} />
-      
+
       {/* Main Content */}
       <main className="pt-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -42,11 +42,10 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
             <div className="bg-white/80 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-8">
               <div className="prose prose-lg max-w-none">
                 <p className="text-[#1A1A1A]/80 leading-relaxed">
-                  At Doors & Plys India, we are committed to protecting your privacy and ensuring the security of your personal information. 
-                  As a leading B2B supplier of premium UPVC doors serving international markets, we understand the importance of maintaining 
-                  trust with our global partners and clients. This Privacy Policy outlines how we collect, use, protect, and share your 
-                  information in compliance with India's Information Technology Act, 2000, and the General Data Protection Regulation (GDPR) 
-                  for our European clients.
+                  At Doors & Plys India, we are committed to protecting your privacy and ensuring the security of your personal information.
+                  As a leading supplier of premium UPVC doors serving clients across India, we understand the importance of maintaining
+                  trust with our partners and clients. This Privacy Policy outlines how we collect, use, protect, and share your
+                  information in compliance with India's Information Technology Act, 2000.
                 </p>
               </div>
             </div>
@@ -60,7 +59,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
               </h2>
               <ul className="list-disc list-outside pl-6 space-y-3">
                 <li className="text-sm text-[#1A1A1A]/70 leading-relaxed">
-                  <strong className="text-[#4B3A2A]">Business Contact Information:</strong> Company name, business address, phone numbers, and professional email addresses
+                  <strong className="text-[#4B3A2A]">Contact Information:</strong> Name, business address, phone numbers, and email addresses
                 </li>
                 <li className="text-sm text-[#1A1A1A]/70 leading-relaxed">
                   <strong className="text-[#4B3A2A]">Order and Transaction Data:</strong> Product specifications, quantities, pricing, shipping addresses, and payment information
@@ -70,9 +69,6 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
                 </li>
                 <li className="text-sm text-[#1A1A1A]/70 leading-relaxed">
                   <strong className="text-[#4B3A2A]">Website Usage Data:</strong> IP addresses, browser information, pages visited, and interaction patterns for improving user experience
-                </li>
-                <li className="text-sm text-[#1A1A1A]/70 leading-relaxed">
-                  <strong className="text-[#4B3A2A]">Export Documentation:</strong> Import licenses, customs declarations, and shipping documentation required for international trade
                 </li>
               </ul>
             </div>
@@ -87,11 +83,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
               <ul className="space-y-4">
                 <li className="flex items-start gap-3 text-sm text-[#1A1A1A]/70 leading-relaxed">
                   <FileText className="w-5 h-5 text-[#C3A572] flex-shrink-0 mt-0.5" />
-                  <span><strong className="text-[#4B3A2A]">Order Processing:</strong> To fulfill your UPVC door orders, manage inventory, and coordinate international shipping</span>
-                </li>
-                <li className="flex items-start gap-3 text-sm text-[#1A1A1A]/70 leading-relaxed">
-                  <Shield className="w-5 h-5 text-[#C3A572] flex-shrink-0 mt-0.5" />
-                  <span><strong className="text-[#4B3A2A]">Export Compliance:</strong> To ensure compliance with international trade regulations and customs requirements</span>
+                  <span><strong className="text-[#4B3A2A]">Order Processing:</strong> To fulfill your UPVC door orders, manage inventory, and coordinate shipping across India</span>
                 </li>
                 <li className="flex items-start gap-3 text-sm text-[#1A1A1A]/70 leading-relaxed">
                   <Eye className="w-5 h-5 text-[#C3A572] flex-shrink-0 mt-0.5" />
@@ -153,13 +145,20 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
               </ul>
               <div className="mt-6 p-4 bg-[#C3A572]/10 backdrop-blur-sm rounded-xl border border-[#C3A572]/20">
                 <p className="text-sm text-[#4B3A2A]">
-                  <strong>Response Time:</strong> We will respond to all privacy-related requests within 30 days. 
+                  <strong>Response Time:</strong> We will respond to all privacy-related requests within 30 days.
                   For urgent matters, please contact us directly at{' '}
-                  <a 
-                    href="mailto:info@doorsandplysindia.com" 
+                  <a
+                    href="mailto:doorsandplysindia@gmail.com"
                     className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200 underline"
                   >
-                    info@doorsandplysindia.com
+                    doorsandplysindia@gmail.com
+                  </a>
+                  {' '}or{' '}
+                  <a
+                    href="mailto:shanthiramamurthi@gmail.com"
+                    className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200 underline"
+                  >
+                    shanthiramamurthi@gmail.com
                   </a>
                 </p>
               </div>
@@ -185,16 +184,24 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
                   </address>
                   <p className="pt-2">
                     <strong className="text-[#4B3A2A]">Email:</strong>{' '}
-                    <a 
-                      href={`mailto:${CONTACT_INFO.email}`}
-                      className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
-                    >
-                      {CONTACT_INFO.email}
-                    </a>
+                    <div className="flex flex-col gap-1">
+                      <a
+                        href={`mailto:${CONTACT_INFO.email}`}
+                        className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
+                      >
+                        {CONTACT_INFO.email}
+                      </a>
+                      <a
+                        href={`mailto:${CONTACT_INFO.alternateEmail}`}
+                        className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
+                      >
+                        {CONTACT_INFO.alternateEmail}
+                      </a>
+                    </div>
                   </p>
                   <p>
                     <strong className="text-[#4B3A2A]">Phone:</strong>{' '}
-                    <a 
+                    <a
                       href={`tel:${CONTACT_INFO.phone}`}
                       className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
                     >
@@ -214,12 +221,12 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigate }) => {
               </h2>
               <div className="prose prose-sm max-w-none">
                 <p className="text-[#1A1A1A]/70 leading-relaxed mb-4">
-                  We may update this Privacy Policy from time to time to reflect changes in our business practices, 
-                  legal requirements, or to improve clarity. We will notify you of any material changes by posting 
+                  We may update this Privacy Policy from time to time to reflect changes in our business practices,
+                  legal requirements, or to improve clarity. We will notify you of any material changes by posting
                   the updated policy on our website and updating the "Last Revised" date below.
                 </p>
                 <p className="text-xs text-[#1A1A1A]/50">
-                  <strong>Last Revised:</strong> July 2025
+                  <strong>Last Revised:</strong> January 2026
                 </p>
               </div>
             </div>

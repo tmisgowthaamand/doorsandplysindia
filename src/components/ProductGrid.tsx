@@ -11,8 +11,8 @@ interface ProductGridProps {
   filteredProducts?: Product[];
 }
 
-export const ProductGrid: React.FC<ProductGridProps> = ({ 
-  loading = false, 
+export const ProductGrid: React.FC<ProductGridProps> = ({
+  loading = false,
   onProductClick,
   filteredProducts
 }) => {
@@ -20,8 +20,8 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
 
   if (loading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {Array.from({ length: 7 }).map((_, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+        {Array.from({ length: 6 }).map((_, index) => (
           <ProductSkeleton key={index} />
         ))}
       </div>
@@ -29,31 +29,26 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
   }
 
   return (
-    <motion.div 
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 items-stretch"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, staggerChildren: 0.1 }}
+      transition={{ duration: 0.8 }}
     >
       {productsToShow.map((product) => (
-        <motion.div 
+        <div
           key={product.id}
+          className="h-full flex flex-col cursor-pointer"
           onClick={() => onProductClick?.(product.id)}
-          className="cursor-pointer"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: parseInt(product.id) * 0.1 }}
         >
-          <div onClick={() => onProductClick?.(product.id)}>
-            <ProductCard
-              product={product}
-              onAddToCart={(e) => {
-                e.stopPropagation();
-                onProductClick?.(product.id);
-              }}
-            />
-          </div>
-        </motion.div>
+          <ProductCard
+            product={product}
+            onAddToCart={(e) => {
+              e.stopPropagation();
+              onProductClick?.(product.id);
+            }}
+          />
+        </div>
       ))}
     </motion.div>
   );

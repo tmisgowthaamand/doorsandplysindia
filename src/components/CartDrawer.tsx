@@ -2,7 +2,6 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ShoppingCart, Minus, Plus, Trash2 } from 'lucide-react';
 import { Button } from './Button';
-import { ExportBadge } from './ExportBadge';
 import { useCartStore } from '../store/cart';
 
 interface CartDrawerProps {
@@ -10,14 +9,14 @@ interface CartDrawerProps {
 }
 
 export const CartDrawer: React.FC<CartDrawerProps> = ({ onNavigate }) => {
-  const { 
-    items, 
-    isOpen, 
-    setCartOpen, 
-    updateQuantity, 
-    removeFromCart, 
-    getTotalItems, 
-    getTotalPrice 
+  const {
+    items,
+    isOpen,
+    setCartOpen,
+    updateQuantity,
+    removeFromCart,
+    getTotalItems,
+    getTotalPrice
   } = useCartStore();
 
   const totalItems = getTotalItems();
@@ -94,7 +93,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onNavigate }) => {
                           alt={item.product.name}
                           className="w-16 h-16 object-cover rounded-lg"
                         />
-                        
+
                         <div className="flex-1">
                           <div className="flex items-start justify-between mb-2">
                             <div>
@@ -135,14 +134,11 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onNavigate }) => {
                                 <Plus className="w-3 h-3" />
                               </Button>
                             </div>
-                            
+
                             <div className="text-right">
                               <div className="font-bold text-[#4B3A2A]">
                                 ₹{(parseFloat(item.product.price.replace(/[₹$,]/g, '')) * item.quantity).toLocaleString()}
                               </div>
-                              {item.exportRequest && (
-                                <ExportBadge type="available" className="mt-1" />
-                              )}
                             </div>
                           </div>
                         </div>
@@ -160,7 +156,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ onNavigate }) => {
                   <span>Total:</span>
                   <span>₹{totalPrice.toLocaleString()}</span>
                 </div>
-                
+
                 <Button
                   variant="large"
                   onClick={handleCheckout}

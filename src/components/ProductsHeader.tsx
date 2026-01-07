@@ -10,8 +10,8 @@ interface ProductsHeaderProps {
   onFilterClick?: () => void;
 }
 
-export const ProductsHeader: React.FC<ProductsHeaderProps> = ({ 
-  totalProducts, 
+export const ProductsHeader: React.FC<ProductsHeaderProps> = ({
+  totalProducts,
   viewMode = 'grid',
   onViewModeChange,
   onFilterClick
@@ -24,11 +24,11 @@ export const ProductsHeader: React.FC<ProductsHeaderProps> = ({
             Premium UPVC Doors
           </h1>
           <p className="text-xl text-[#4B3A2A]/70 font-medium">
-            Showing {totalProducts} export-ready UPVC door solutions
+            Showing {totalProducts} premium UPVC door solutions
           </p>
           <p className="text-sm text-[#C3A572] font-semibold mt-2 flex items-center gap-2">
             <Globe className="w-4 h-4" />
-            Available for international export
+            Available for shipping across India
           </p>
         </div>
 

@@ -5,7 +5,7 @@ export interface FormInputProps extends Omit<React.InputHTMLAttributes<HTMLInput
   type?: 'text' | 'email' | 'tel' | 'number' | 'password' | 'search' | 'url';
   placeholder?: string;
   value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement> | string) => void;
+  onChange?: any;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
   required?: boolean;
   error?: string;
@@ -42,9 +42,8 @@ export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(({
         ref={ref}
         id={id}
         type={type}
-        className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#4B3A2A] focus:border-transparent transition-colors ${inputClassName} ${
-          error ? 'border-red-500' : 'border-gray-300'
-        }`}
+        className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#4B3A2A] focus:border-transparent transition-colors ${inputClassName} ${error ? 'border-red-500' : 'border-gray-300'
+          }`}
         placeholder={placeholder}
         value={value}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {

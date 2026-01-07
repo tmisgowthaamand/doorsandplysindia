@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from './Card';
-import { Award, Globe, Leaf, Shield } from 'lucide-react';
+import { Award, Handshake, Leaf, Shield } from 'lucide-react';
 
 export const CompanyOverview: React.FC = () => {
   const values = [
@@ -10,9 +10,9 @@ export const CompanyOverview: React.FC = () => {
       description: 'Uncompromising standards in every product'
     },
     {
-      icon: Globe,
+      icon: Handshake,
       title: 'Trust',
-      description: 'Building lasting partnerships worldwide'
+      description: 'Building lasting partnerships across India'
     },
     {
       icon: Leaf,
@@ -32,24 +32,24 @@ export const CompanyOverview: React.FC = () => {
         <Card variant="basic" className="text-center">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-bold text-[#4B3A2A] mb-8 tracking-tight">
-              Professional UPVC Door Supply Since 1995
+              Professional UPVC Door Supply Since 2021
             </h2>
-            
+
             <div className="space-y-6 text-lg text-[#1A1A1A]/80 leading-relaxed mb-12">
               <p>
-                Established in 1995, Doors & Plys India has evolved from a regional supplier to a trusted international partner 
-                for premium UPVC door solutions. We specialize in sourcing and supplying high-quality, energy-efficient UPVC doors 
-                that meet international standards while offering competitive pricing from India.
+                Established in 2021 by Shanthi, Doors & Plys India has evolved from a regional supplier to a trusted national partner
+                for premium UPVC door solutions. We specialize in sourcing and supplying high-quality, energy-efficient UPVC doors
+                that meet industry-leading standards while offering competitive pricing within India.
               </p>
-              
+
               <p>
-                Today, we serve importers and distributors in 35+ countries, maintaining our founding commitment to quality and service. 
-                Our expertise spans product sourcing, quality assurance, export documentation, and international logistics – 
-                everything you need for successful UPVC door imports.
+                Today, we serve distributors and builders across India, maintaining our founding commitment to quality and service.
+                Our expertise spans product sourcing, quality assurance, supply chain management, and national logistics –
+                everything you need for successful project execution.
               </p>
-              
+
               <p>
-                As your dedicated supply partner, we handle the complexities of international trade while you focus on your market. 
+                As your dedicated supply partner, we handle the complexities of national logistics while you focus on your projects.
                 From initial inquiry to final delivery, we ensure professional service, transparent communication, and reliable results.
               </p>
             </div>
@@ -58,7 +58,7 @@ export const CompanyOverview: React.FC = () => {
               <h3 className="text-2xl font-bold text-[#4B3A2A] mb-8 tracking-tight">
                 Our Core Values
               </h3>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {values.map((value, index) => (
                   <div key={index} className="text-center">

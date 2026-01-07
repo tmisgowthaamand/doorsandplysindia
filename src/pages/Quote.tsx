@@ -8,7 +8,7 @@ import { AlternativeContact } from '../components/AlternativeContact';
 import { ProductsFooter } from '../components/ProductsFooter';
 import { Container } from '../components/Container';
 
-type NavigationPage = 'home' | 'products' | 'product-detail' | 'export' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions' | 'contact' | 'shipping-policy' | 'cancellation-refund-policy';
+type NavigationPage = 'home' | 'products' | 'product-detail' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions' | 'contact' | 'shipping-policy' | 'cancellation-refund-policy';
 
 interface QuoteProps {
   onNavigate?: (page: NavigationPage, productId?: string) => void;
@@ -23,7 +23,7 @@ export const Quote: React.FC<QuoteProps> = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-[#F5F5F5] font-inter antialiased">
       <Navigation onNavigate={onNavigate} />
-      
+
       {/* Main Content */}
       <main role="main" className="pt-20">
         <Container size="7xl" padding="md" className="pt-8">

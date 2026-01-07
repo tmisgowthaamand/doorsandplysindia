@@ -6,7 +6,11 @@ import logo from '../../public/logo.png';
 import { Container } from './Container';
 import { Link, useLocation } from 'react-router-dom';
 
-export const Navigation: React.FC = () => {
+export interface NavigationProps {
+  onNavigate?: (page: any, productId?: string) => void;
+}
+
+export const Navigation: React.FC<NavigationProps> = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const { getTotalItems, toggleCart } = useCartStore();
   const totalItems = getTotalItems();
@@ -15,7 +19,6 @@ export const Navigation: React.FC = () => {
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'Products', path: '/products' },
-    { label: 'Export', path: '/export' },
     { label: 'Quote', path: '/quote' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
@@ -29,9 +32,9 @@ export const Navigation: React.FC = () => {
             {/* Logo */}
             <div className="flex items-center">
               <Link to="/" className="h-12 w-48 flex items-center">
-                <img 
-                  src={logo} 
-                  alt="Doors & Plys India Logo" 
+                <img
+                  src={logo}
+                  alt="Doors & Plys India Logo"
                   className="h-full w-auto object-contain"
                   onError={(e) => {
                     console.error('Failed to load logo from:', e.currentTarget.src);
@@ -54,8 +57,8 @@ export const Navigation: React.FC = () => {
                   </Link>
                 );
               })}
-              <Button 
-                variant="settings" 
+              <Button
+                variant="settings"
                 onClick={toggleCart}
                 className="relative"
                 aria-label={`Shopping cart with ${totalItems} items`}
@@ -97,11 +100,10 @@ export const Navigation: React.FC = () => {
                       key={item.label}
                       to={item.path}
                       onClick={() => setIsMenuOpen(false)}
-                      className={`block w-full text-left px-3 py-2 text-base font-medium rounded-md ${
-                        isActive 
-                          ? 'text-[#4B3A2A] font-semibold bg-[#F5F5F5]' 
-                          : 'text-[#1A1A1A] hover:bg-[#F5F5F5]'
-                      }`}
+                      className={`block w-full text-left px-3 py-2 text-base font-medium rounded-md ${isActive
+                        ? 'text-[#4B3A2A] font-semibold bg-[#F5F5F5]'
+                        : 'text-[#1A1A1A] hover:bg-[#F5F5F5]'
+                        }`}
                     >
                       {item.label}
                     </Link>

@@ -2,15 +2,7 @@ import React from 'react';
 import { ProductCard } from './ProductCard';
 import { products } from '../data/products';
 import { Container } from './Container';
-
-interface Product {
-  id: string;
-  name: string;
-  price: string;
-  description?: string;
-  image: string;
-  category: string;
-}
+import { Product } from '../types/product';
 
 interface RelatedProductsProps {
   currentProductId: string;
@@ -18,14 +10,18 @@ interface RelatedProductsProps {
   onProductClick?: (productId: string) => void;
 }
 
-export const RelatedProducts: React.FC<RelatedProductsProps> = ({ 
-  currentProductId, 
+export const RelatedProducts: React.FC<RelatedProductsProps> = ({
+  currentProductId,
   onAddToCart,
-  onProductClick 
+  onProductClick
 }) => {
-  // Filter out the current product and get only UPVC doors
+  // Filter out the current product and get related products from the same category
+  const currentProduct = products.find(p => p.id === currentProductId);
   const relatedProducts = products
-    .filter(product => product.id !== currentProductId && product.category.includes('UPVC'))
+    .filter(product =>
+      product.id !== currentProductId &&
+      (currentProduct ? product.category === currentProduct.category : product.category.includes('UPVC'))
+    )
     .slice(0, 3); // Show maximum 3 related products
 
   return (
@@ -40,20 +36,23 @@ export const RelatedProducts: React.FC<RelatedProductsProps> = ({
           </p>
         </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {relatedProducts.map((product) => (
-          <div 
-            key={product.id}
-            onClick={() => onProductClick?.(product.id)}
-            className="cursor-pointer"
-          >
-            <ProductCard
-              product={product}
-              onAddToCart={onAddToCart}
-            />
-          </div>
-        ))}
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+          {relatedProducts.map((product) => (
+            <div
+              key={product.id}
+              onClick={() => onProductClick?.(product.id)}
+              className="cursor-pointer h-full"
+            >
+              <ProductCard
+                product={product}
+                onAddToCart={(e) => {
+                  e.stopPropagation();
+                  onAddToCart?.(product);
+                }}
+              />
+            </div>
+          ))}
+        </div>
       </Container>
     </section>
   );

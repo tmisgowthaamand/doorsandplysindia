@@ -6,7 +6,8 @@ export const CONTACT_INFO = {
     line3: "Coimbatore, Tamil Nadu - 641025, India"
   },
   phone: "+91 9042166606",
-  email: "info@doorsandplysindia.com",
+  email: "doorsandplysindia@gmail.com",
+  alternateEmail: "shanthiramamurthi@gmail.com",
   whatsapp: "+91 9042166606",
   businessHours: "Monday - Saturday, 9:00 AM - 6:00 PM IST"
 };

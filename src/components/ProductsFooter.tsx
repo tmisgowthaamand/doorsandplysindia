@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from './Button';
 import { Home, Package, Phone, Settings, Share2 } from 'lucide-react';
 
-type NavigationPage = 'home' | 'products' | 'product-detail' | 'export' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions' | 'contact' | 'shipping-policy' | 'cancellation-refund-policy';
+type NavigationPage = 'home' | 'products' | 'product-detail' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions' | 'contact' | 'shipping-policy' | 'cancellation-refund-policy';
 
 interface ProductsFooterProps {
   onNavigate?: (page: NavigationPage, productId?: string) => void;
@@ -25,8 +25,12 @@ export const ProductsFooter: React.FC<ProductsFooterProps> = ({ onNavigate }) =>
               Doors & Plys India
             </h3>
             <p className="text-[#1A1A1A]/70 text-sm">
-              Trusted UPVC door supplier for global export markets
+              Trusted UPVC door supplier for the Indian market
             </p>
+            <div className="mt-2 flex flex-col items-center sm:items-start gap-1">
+              <a href="mailto:doorsandplysindia@gmail.com" className="text-xs text-[#1A1A1A]/60 hover:text-[#4B3A2A]">doorsandplysindia@gmail.com</a>
+              <a href="mailto:shanthiramamurthi@gmail.com" className="text-xs text-[#1A1A1A]/60 hover:text-[#4B3A2A]">shanthiramamurthi@gmail.com</a>
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -57,7 +61,7 @@ export const ProductsFooter: React.FC<ProductsFooterProps> = ({ onNavigate }) =>
         {/* Bottom Bar */}
         <div className="mt-8 pt-6 border-t border-white/20 text-center">
           <p className="text-[#1A1A1A]/60 text-sm">
-            © 2025 Doors & Plys India. All rights reserved.
+            © 2026 Doors & Plys India. All rights reserved.
           </p>
         </div>
       </div>

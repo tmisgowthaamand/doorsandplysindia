@@ -1,12 +1,11 @@
 import React from 'react';
 import { Navigation } from '../components/Navigation';
 import { Breadcrumb } from '../components/Breadcrumb';
-import { ProductsFooter } from '../components/ProductsFooter';
 import { Phone, Mail, MessageCircle } from 'lucide-react';
 import { CONTACT_INFO } from '../constants/contact';
 
 interface TermsAndConditionsProps {
-  onNavigate?: (page: 'home' | 'products' | 'product-detail' | 'export' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions', productId?: string) => void;
+  onNavigate?: (page: 'home' | 'products' | 'product-detail' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions', productId?: string) => void;
 }
 
 export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNavigate }) => {
@@ -18,7 +17,7 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
   return (
     <div className="min-h-screen bg-[#F5F5F5] font-inter antialiased">
       <Navigation onNavigate={onNavigate} />
-      
+
       {/* Main Content */}
       <main className="pt-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -33,7 +32,7 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
               Terms & Conditions
             </h1>
             <p className="text-sm text-[#1A1A1A]/60">
-              Last updated: July 2025
+              Last updated: January 2026
             </p>
           </section>
 
@@ -42,10 +41,10 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
             <div className="bg-white/80 backdrop-blur-md border border-white/20 shadow-xl rounded-2xl p-8">
               <div className="prose prose-lg max-w-none">
                 <p className="text-[#1A1A1A]/80 leading-relaxed">
-                  Welcome to Doors & Plys India. By accessing and using our website (doorsandplysindia.shop), 
-                  you agree to comply with and be bound by the following Terms and Conditions. These terms 
-                  govern your use of our website and services, including the purchase of premium UPVC doors 
-                  and related products. If you do not agree with any part of these terms, please do not use 
+                  Welcome to Doors & Plys India. By accessing and using our website (doorsandplysindia.shop),
+                  you agree to comply with and be bound by the following Terms and Conditions. These terms
+                  govern your use of our website and services, including the purchase of premium UPVC doors
+                  and related products within India. If you do not agree with any part of these terms, please do not use
                   our website or services.
                 </p>
               </div>
@@ -60,9 +59,9 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
               </h2>
               <div className="prose prose-base max-w-none">
                 <p className="text-[#1A1A1A]/80 leading-relaxed mb-4">
-                  Our website is intended for business-to-business (B2B) transactions and is designed to serve 
-                  importers, distributors, contractors, and other commercial entities seeking premium UPVC door 
-                  solutions. By using this website, you represent that you are acting in a commercial capacity.
+                  Our website is intended for business-to-business (B2B) and direct-to-consumer transactions, designed to serve
+                  architects, homeowners, contractors, and other entities seeking premium UPVC door
+                  solutions across India.
                 </p>
                 <ul className="list-disc list-outside pl-6 space-y-2 text-[#1A1A1A]/70">
                   <li>You must be at least 18 years old to use our services</li>
@@ -82,14 +81,13 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
               </h2>
               <div className="prose prose-base max-w-none">
                 <p className="text-[#1A1A1A]/80 leading-relaxed mb-4">
-                  All product information, specifications, and pricing displayed on our website are subject to 
-                  change without notice. We strive to ensure accuracy but cannot guarantee that all information 
+                  All product information, specifications, and pricing displayed on our website are subject to
+                  change without notice. We strive to ensure accuracy but cannot guarantee that all information
                   is error-free.
                 </p>
                 <ul className="list-disc list-outside pl-6 space-y-2 text-[#1A1A1A]/70">
-                  <li>Prices are quoted in Indian Rupees (INR) for domestic orders and USD for export orders</li>
-                  <li>Export prices may vary based on destination, quantity, and current market conditions</li>
-                  <li>Flexible order quantities available for both domestic and international orders</li>
+                  <li>Prices are quoted in Indian Rupees (INR) for all orders</li>
+                  <li>Flexible order quantities available for domestic orders</li>
                   <li>Product availability is subject to manufacturing capacity and raw material availability</li>
                   <li>Custom specifications may require additional lead time and pricing adjustments</li>
                 </ul>
@@ -105,14 +103,12 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
               </h2>
               <div className="prose prose-base max-w-none">
                 <p className="text-[#1A1A1A]/80 leading-relaxed mb-4">
-                  Payment terms and methods vary based on order type, destination, and customer relationship. 
+                  Payment terms and methods vary based on order type and customer relationship.
                   All payments must be made in accordance with the agreed terms before shipment.
                 </p>
                 <ul className="list-disc list-outside pl-6 space-y-2 text-[#1A1A1A]/70">
-                  <li><strong className="text-[#4B3A2A]">Domestic Orders:</strong> Bank transfer, cheque, or cash on delivery (for qualified customers)</li>
-                  <li><strong className="text-[#4B3A2A]">Export Orders:</strong> Letter of Credit (L/C), wire transfer, or advance payment</li>
-                  <li><strong className="text-[#4B3A2A]">Payment Schedule:</strong> Typically 30-50% advance, balance before shipment</li>
-                  <li>All banking charges and currency conversion fees are borne by the customer</li>
+                  <li><strong className="text-[#4B3A2A]">Payment Methods:</strong> Bank transfer, UPI, or other digital payment methods</li>
+                  <li><strong className="text-[#4B3A2A]">Payment Schedule:</strong> Typically a booking advance is required, with the balance due before shipment</li>
                   <li>Prices are valid for 30 days from quotation date unless otherwise specified</li>
                 </ul>
               </div>
@@ -127,16 +123,13 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
               </h2>
               <div className="prose prose-base max-w-none">
                 <p className="text-[#1A1A1A]/80 leading-relaxed mb-4">
-                  We provide comprehensive shipping and logistics support for both domestic and international 
-                  orders. Delivery terms are specified in individual quotations and purchase agreements.
+                  We provide comprehensive shipping and logistics support for orders across India.
+                  Delivery terms are specified in individual quotations and purchase agreements.
                 </p>
                 <ul className="list-disc list-outside pl-6 space-y-2 text-[#1A1A1A]/70">
                   <li><strong className="text-[#4B3A2A]">Lead Times:</strong> 2-8 weeks depending on product complexity and quantity</li>
-                  <li><strong className="text-[#4B3A2A]">Export Documentation:</strong> We provide all necessary export documentation and customs support</li>
-                  <li><strong className="text-[#4B3A2A]">Packaging:</strong> Professional export packaging with moisture protection and damage prevention</li>
-                  <li>Risk of loss transfers to customer upon delivery to carrier (FOB terms)</li>
+                  <li><strong className="text-[#4B3A2A]">Packaging:</strong> Professional premium packaging with moisture protection and damage prevention</li>
                   <li>Delivery delays due to force majeure events are beyond our control</li>
-                  <li>Customer is responsible for customs clearance and import duties at destination</li>
                 </ul>
               </div>
             </div>
@@ -150,7 +143,7 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
               </h2>
               <div className="prose prose-base max-w-none">
                 <p className="text-[#1A1A1A]/80 leading-relaxed mb-4">
-                  Users of our website and services are expected to conduct themselves professionally and 
+                  Users of our website and services are expected to conduct themselves professionally and
                   in accordance with applicable laws and regulations.
                 </p>
                 <ul className="list-disc list-outside pl-6 space-y-2 text-[#1A1A1A]/70">
@@ -172,8 +165,8 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
               </h2>
               <div className="prose prose-base max-w-none">
                 <p className="text-[#1A1A1A]/80 leading-relaxed mb-4">
-                  All content on this website, including but not limited to text, graphics, logos, images, 
-                  and software, is the property of Doors & Plys India or its licensors and is protected by 
+                  All content on this website, including but not limited to text, graphics, logos, images,
+                  and software, is the property of Doors & Plys India or its licensors and is protected by
                   copyright and other intellectual property laws.
                 </p>
                 <ul className="list-disc list-outside pl-6 space-y-2 text-[#1A1A1A]/70">
@@ -194,8 +187,8 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
               </h2>
               <div className="prose prose-base max-w-none">
                 <p className="text-[#1A1A1A]/80 leading-relaxed mb-4">
-                  We reserve the right to modify these Terms and Conditions at any time. Changes will be 
-                  effective immediately upon posting on our website. Your continued use of our services 
+                  We reserve the right to modify these Terms and Conditions at any time. Changes will be
+                  effective immediately upon posting on our website. Your continued use of our services
                   after any modifications constitutes acceptance of the updated terms.
                 </p>
                 <ul className="list-disc list-outside pl-6 space-y-2 text-[#1A1A1A]/70">
@@ -215,7 +208,7 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
               </h2>
               <div className="prose prose-base max-w-none">
                 <p className="text-[#1A1A1A]/80 leading-relaxed mb-4">
-                  While we strive to provide high-quality products and services, our liability is limited 
+                  While we strive to provide high-quality products and services, our liability is limited
                   as follows:
                 </p>
                 <ul className="list-disc list-outside pl-6 space-y-2 text-[#1A1A1A]/70">
@@ -237,8 +230,8 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
               </h2>
               <div className="prose prose-base max-w-none">
                 <p className="text-[#1A1A1A]/80 leading-relaxed mb-4">
-                  These Terms and Conditions are governed by the laws of India. Any disputes arising from 
-                  these terms or your use of our services shall be subject to the exclusive jurisdiction 
+                  These Terms and Conditions are governed by the laws of India. Any disputes arising from
+                  these terms or your use of our services shall be subject to the exclusive jurisdiction
                   of the courts in Coimbatore, Tamil Nadu, India.
                 </p>
                 <ul className="list-disc list-outside pl-6 space-y-2 text-[#1A1A1A]/70">
@@ -271,7 +264,7 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
                     <p className="flex items-center gap-2">
                       <Phone className="w-4 h-4 text-[#C3A572]" />
                       <strong className="text-[#4B3A2A]">Phone:</strong>{' '}
-                      <a 
+                      <a
                         href={`tel:${CONTACT_INFO.phone}`}
                         className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
                       >
@@ -281,12 +274,20 @@ export const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onNaviga
                     <p className="flex items-center gap-2">
                       <Mail className="w-4 h-4 text-[#C3A572]" />
                       <strong className="text-[#4B3A2A]">Email:</strong>{' '}
-                      <a 
-                        href={`mailto:${CONTACT_INFO.email}`}
-                        className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
-                      >
-                        {CONTACT_INFO.email}
-                      </a>
+                      <div className="flex flex-col gap-1">
+                        <a
+                          href={`mailto:${CONTACT_INFO.email}`}
+                          className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
+                        >
+                          {CONTACT_INFO.email}
+                        </a>
+                        <a
+                          href={`mailto:${CONTACT_INFO.alternateEmail}`}
+                          className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
+                        >
+                          {CONTACT_INFO.alternateEmail}
+                        </a>
+                      </div>
                     </p>
                     <p className="flex items-center gap-2">
                       <MessageCircle className="w-4 h-4 text-[#C3A572]" />

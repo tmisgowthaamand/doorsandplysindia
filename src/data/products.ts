@@ -3,10 +3,9 @@ import { Product } from '../types/product';
 export const products: Product[] = [
   {
     id: '1',
-    name: 'UPVC Sliding Door System - Export Grade',
+    name: 'UPVC Sliding Door System - Premium Grade',
     price: '₹8,499',
-    exportPrice: '$102',
-    description: 'Professional-grade sliding door system with German hardware, multi-point locking, and superior weather sealing for international markets',
+    description: 'Professional-grade sliding door system with German hardware, multi-point locking, and superior weather sealing for all Indian weather conditions',
     image: '/images/products/upvc-sliding-door-system/1.png',
     images: [
       '/images/products/upvc-sliding-door-system/1.png',
@@ -18,11 +17,8 @@ export const products: Product[] = [
     ],
     category: 'UPVC Sliding Doors',
     maxQty: 500,
-    exportTags: ['CE Certified', 'Container Ready'],
-    exportAvailable: true,
     leadTime: '2-3 weeks',
-    containerCapacity: 150,
-    certifications: ['CE Certified', 'ISO 9001:2015', 'Export Documentation'],
+    certifications: ['CE Certified', 'ISO 9001:2015', 'BIS Certified'],
     specifications: [
       { label: 'Material', value: 'Premium UPVC Profile' },
       { label: 'Glass', value: 'Double Glazed 24mm' },
@@ -34,7 +30,7 @@ export const products: Product[] = [
     features: [
       'German-engineered multi-point locking system',
       'Double-glazed units with thermal efficiency',
-      'Professional export packaging included',
+      'Professional Pan-India delivery packaging included',
       'Complete installation hardware provided'
     ],
     rating: 5,
@@ -44,8 +40,7 @@ export const products: Product[] = [
     id: '2',
     name: 'UPVC Casement Door Set - Professional Grade',
     price: '₹6,299',
-    exportPrice: '$76',
-    description: 'Traditional hinged door system with sidelight panel, ideal for residential and commercial export projects',
+    description: 'Traditional hinged door system with sidelight panel, ideal for residential and commercial projects across India',
     image: '/images/products/upvc-casement-door/1.png',
     images: [
       '/images/products/upvc-casement-door/1.png',
@@ -57,10 +52,7 @@ export const products: Product[] = [
     ],
     category: 'UPVC Casement Doors',
     maxQty: 300,
-    exportTags: ['Classic Design', 'Decorative Glass', 'Secure'],
-    exportAvailable: true,
     leadTime: '2-3 weeks',
-    containerCapacity: 200,
     certifications: ['CE Certified', 'Security Tested', 'ISO 9001'],
     specifications: [
       { label: 'Profile System', value: '70mm Multi-Chamber' },
@@ -83,7 +75,6 @@ export const products: Product[] = [
     id: '3',
     name: 'UPVC French Door System',
     price: '₹14,999',
-    exportPrice: '$180',
     description: 'Elegant French door system with double doors opening outward, perfect for patios and gardens',
     image: '/images/products/upvc-french-door/1.png',
     images: [
@@ -96,10 +87,7 @@ export const products: Product[] = [
     ],
     category: 'UPVC French Doors',
     maxQty: 200,
-    exportTags: ['Full Glass', 'Elegant Design', 'Natural Light'],
-    exportAvailable: true,
     leadTime: '3-5 weeks',
-    containerCapacity: 100,
     certifications: ['CE Certified', 'Energy Rated A+', 'ISO 9001'],
     specifications: [
       { label: 'Configuration', value: 'Double Door Set' },
@@ -122,7 +110,6 @@ export const products: Product[] = [
     id: '4',
     name: 'UPVC Bi-Fold Door System',
     price: '₹18,499',
-    exportPrice: '$222',
     description: 'Space-saving bi-fold door system that folds neatly to one side, creating a wide opening',
     image: '/images/products/upvc-bi-fold-door/1.png',
     images: [
@@ -135,10 +122,7 @@ export const products: Product[] = [
     ],
     category: 'UPVC Bi-Fold Doors',
     maxQty: 150,
-    exportTags: ['Space Saving', 'Smooth Operation', 'Modern Design'],
-    exportAvailable: true,
     leadTime: '4-6 weeks',
-    containerCapacity: 80,
     certifications: ['CE Certified', 'Load Tested', 'ISO 9001'],
     specifications: [
       { label: 'Panel Count', value: '3-6 Panels (Configurable)' },
@@ -161,7 +145,6 @@ export const products: Product[] = [
     id: '5',
     name: 'UPVC Lift & Slide Door',
     price: '₹24,999',
-    exportPrice: '$300',
     description: 'Heavy-duty lift and slide door system with smooth operation and large glass panels',
     image: '/images/products/upvc-lift-slide-door/1.png',
     images: [
@@ -174,10 +157,7 @@ export const products: Product[] = [
     ],
     category: 'UPVC Lift & Slide Doors',
     maxQty: 100,
-    exportTags: ['Heavy Duty', 'Large Openings', 'Smooth Operation'],
-    exportAvailable: true,
     leadTime: '5-7 weeks',
-    containerCapacity: 60,
     certifications: ['CE Certified', 'Load Tested', 'ISO 9001'],
     specifications: [
       { label: 'System Type', value: 'Lift & Slide Mechanism' },
@@ -200,7 +180,6 @@ export const products: Product[] = [
     id: '6',
     name: 'UPVC Pivot Door - Premium',
     price: '₹32,999',
-    exportPrice: '$396',
     description: 'Luxury pivot door system with oversized glass panels and premium hardware',
     image: '/images/products/upvc-pivot-door/1.png',
     images: [
@@ -213,10 +192,7 @@ export const products: Product[] = [
     ],
     category: 'UPVC Pivot Doors',
     maxQty: 200,
-    exportTags: ['Soundproof', 'Multi-Lock', 'Decorative Glass'],
-    exportAvailable: true,
     leadTime: '4-5 weeks',
-    containerCapacity: 120,
     certifications: ['CE Certified', 'Security Rated', 'Sound Tested'],
     specifications: [
       { label: 'Door Type', value: 'Single Leaf Entry Door' },
@@ -239,7 +215,6 @@ export const products: Product[] = [
     id: '7',
     name: 'UPVC Slide & Fold Door',
     price: '₹21,499',
-    exportPrice: '$258',
     description: 'Versatile slide and fold door system that stacks neatly to one side',
     image: '/images/products/upvc-slide-fold-door/1.png',
     images: [
@@ -252,10 +227,7 @@ export const products: Product[] = [
     ],
     category: 'UPVC Slide & Fold Doors',
     maxQty: 80,
-    exportTags: ['Innovative Design', 'Space Efficient', 'Full Glass'],
-    exportAvailable: true,
     leadTime: '6-8 weeks',
-    containerCapacity: 70,
     certifications: ['CE Certified', 'Innovation Award', 'ISO 9001'],
     specifications: [
       { label: 'Mechanism', value: 'Slide & Fold Hybrid' },

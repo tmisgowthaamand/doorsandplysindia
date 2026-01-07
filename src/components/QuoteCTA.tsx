@@ -6,7 +6,7 @@ export const QuoteCTA: React.FC = () => {
   return (
     <section className="py-20 relative overflow-hidden">
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
           backgroundImage: 'url(https://images.unsplash.com/photo-1566492031773-4f4e44671d66?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)'
@@ -22,10 +22,10 @@ export const QuoteCTA: React.FC = () => {
             Ready to Source Premium UPVC Doors?
           </h2>
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Join hundreds of satisfied importers. Get competitive pricing, complete documentation, and reliable delivery.
+            Join hundreds of satisfied clients across India. Get competitive pricing, quality assurance, and reliable delivery.
           </p>
           <Button variant="large" className="bg-[#C3A572] hover:bg-[#B08A4A]">
-            Request Export Quote
+            Request Product Quote
           </Button>
         </div>
       </Container>

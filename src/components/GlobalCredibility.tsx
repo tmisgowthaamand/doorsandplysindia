@@ -1,20 +1,20 @@
 import React from 'react';
 import { Card } from './Card';
-import { Globe, Award, Calendar, Settings } from 'lucide-react';
+import { MapPin, Award, Calendar, Settings } from 'lucide-react';
 
 export const GlobalCredibility: React.FC = () => {
   const metrics = [
     {
-      icon: Globe,
-      number: '35+',
-      label: 'Countries Exported',
-      description: 'Trusted partners across five continents'
+      icon: MapPin,
+      number: 'Pan-India',
+      label: 'Distribution Network',
+      description: 'Trusted partners across all Indian states'
     },
     {
       icon: Award,
-      number: 'Globally Recognized',
+      number: 'IS Certified',
       label: 'Certified',
-      description: 'International quality and sustainability standards'
+      description: 'Premium quality and sustainability standards'
     },
     {
       icon: Calendar,
@@ -35,10 +35,10 @@ export const GlobalCredibility: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#4B3A2A] mb-6 tracking-tight">
-            Built for Global Markets
+            Built for Indian Markets
           </h2>
           <p className="text-xl text-[#1A1A1A]/70 max-w-2xl mx-auto">
-            Our commitment to excellence has earned the trust of clients worldwide
+            Our commitment to excellence has earned the trust of clients nationwide
           </p>
         </div>
 

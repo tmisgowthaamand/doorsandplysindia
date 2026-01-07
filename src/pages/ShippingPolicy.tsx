@@ -1,12 +1,11 @@
 import React from 'react';
 import { Navigation } from '../components/Navigation';
 import { Breadcrumb } from '../components/Breadcrumb';
-import { ProductsFooter } from '../components/ProductsFooter';
-import { Phone, Mail, MessageCircle, Clock, Globe, Package } from 'lucide-react';
+import { Phone, Mail, MessageCircle, Clock, Package } from 'lucide-react';
 import { CONTACT_INFO } from '../constants/contact';
 
 interface ShippingPolicyProps {
-  onNavigate?: (page: 'home' | 'products' | 'product-detail' | 'export' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions' | 'shipping-policy', productId?: string) => void;
+  onNavigate?: (page: any, productId?: string) => void;
 }
 
 export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) => {
@@ -18,7 +17,7 @@ export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) =>
   return (
     <div className="min-h-screen bg-[#F5F5F5] font-inter antialiased">
       <Navigation onNavigate={onNavigate} />
-      
+
       {/* Main Content */}
       <main className="pt-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
@@ -33,7 +32,7 @@ export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) =>
               Shipping Policy
             </h1>
             <p className="text-base text-[#1A1A1A]/60">
-              Safe, Secure & Reliable Delivery – From Coimbatore to the World
+              Safe, Secure & Reliable Delivery Across India
             </p>
           </section>
 
@@ -54,9 +53,7 @@ export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) =>
                   <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
                     <strong className="text-[#4B3A2A]">Bulk & Custom Orders:</strong> Large quantity orders may require 2–8 weeks with advance notification and timeline confirmation
                   </li>
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Export Orders:</strong> Additional 1–2 days for documentation and export clearance procedures
-                  </li>
+
                 </ul>
               </div>
             </div>
@@ -68,7 +65,7 @@ export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) =>
               <h2 className="text-2xl font-bold text-[#4B3A2A] mb-6 tracking-tight">
                 Shipping Destinations & Delivery Timelines
               </h2>
-              
+
               {/* Domestic Shipping */}
               <div className="mb-8">
                 <h3 className="text-xl font-semibold text-[#4B3A2A] mb-4 flex items-center gap-2">
@@ -88,27 +85,7 @@ export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) =>
                 </ul>
               </div>
 
-              {/* International Shipping */}
-              <div className="mb-6">
-                <h3 className="text-xl font-semibold text-[#4B3A2A] mb-4 flex items-center gap-2">
-                  <Globe className="w-5 h-5 text-[#C3A572]" />
-                  International Shipping
-                </h3>
-                <ul className="list-disc list-outside pl-6 space-y-2">
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Asia-Pacific & Middle East:</strong> 7–15 business days (UAE, Singapore, Australia, Japan)
-                  </li>
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Europe & North America:</strong> 15–25 business days (UK, Germany, USA, Canada)
-                  </li>
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Other International:</strong> 20–35 business days, varies with customs clearance
-                  </li>
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Container Shipments:</strong> 25–45 days for full container loads (FCL/LCL)
-                  </li>
-                </ul>
-              </div>
+
 
               <div className="mt-6 p-4 bg-[#C3A572]/10 backdrop-blur-sm rounded-xl border border-[#C3A572]/20">
                 <p className="text-sm text-[#4B3A2A]">
@@ -136,10 +113,7 @@ export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) =>
                     <strong className="text-[#4B3A2A]">Free Shipping Offers:</strong> Limited-time domestic free shipping available on orders above ₹25,000 (terms apply)
                   </li>
                   <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Export Charges:</strong> International shipping includes export documentation, customs clearance support, and insurance
-                  </li>
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Bulk Discounts:</strong> Special shipping rates available for bulk orders
+                    <strong className="text-[#4B3A2A]">Bulk Discounts:</strong> Special shipping rates available for bulk orders across India
                   </li>
                 </ul>
               </div>
@@ -166,9 +140,7 @@ export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) =>
                   <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
                     <strong className="text-[#4B3A2A]">Real-time Updates:</strong> Receive notifications for key milestones: dispatch, in-transit, out for delivery, delivered
                   </li>
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">International Tracking:</strong> Global tracking numbers provided for all international shipments
-                  </li>
+
                 </ul>
               </div>
             </div>
@@ -188,9 +160,7 @@ export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) =>
                   <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
                     <strong className="text-[#4B3A2A]">Weather Conditions:</strong> Severe weather, natural disasters, or seasonal disruptions
                   </li>
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Customs & Documentation:</strong> International customs processing, documentation verification, or regulatory changes
-                  </li>
+
                   <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
                     <strong className="text-[#4B3A2A]">Logistics Issues:</strong> Carrier delays, port congestion, or transportation strikes
                   </li>
@@ -221,18 +191,7 @@ export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) =>
                   For B2B clients and bulk orders, we provide specialized logistics solutions:
                 </p>
                 <ul className="list-disc list-outside pl-6 space-y-3">
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Custom Logistics:</strong> Tailored shipping solutions for large quantity orders and specific delivery requirements
-                  </li>
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Export Documentation:</strong> Complete export paperwork, certificates of origin, and customs declarations
-                  </li>
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Trade Terms:</strong> FOB (Free on Board), CIF (Cost, Insurance & Freight), and other Incoterms available
-                  </li>
-                  <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
-                    <strong className="text-[#4B3A2A]">Container Loading:</strong> Professional packing and container loading services for international shipments
-                  </li>
+
                   <li className="text-base text-[#1A1A1A]/80 leading-relaxed">
                     <strong className="text-[#4B3A2A]">Dedicated Support:</strong> Assigned account manager for wholesale clients with personalized service
                   </li>
@@ -255,24 +214,32 @@ export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) =>
               <p className="text-base text-[#1A1A1A]/80 leading-relaxed mb-6">
                 Our customer support team is ready to help with any shipping questions, tracking issues, or delivery concerns.
               </p>
-              
+
               <div className="bg-[#4B3A2A]/5 backdrop-blur-sm rounded-xl p-6 border border-[#4B3A2A]/10">
                 <div className="space-y-3 text-sm text-[#1A1A1A]/80">
                   <div className="flex items-center gap-3">
                     <Mail className="w-4 h-4 text-[#C3A572]" />
                     <span><strong className="text-[#4B3A2A]">Email:</strong>{' '}
-                      <a 
-                        href={`mailto:${CONTACT_INFO.email}`}
-                        className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
-                      >
-                        {CONTACT_INFO.email}
-                      </a>
+                      <div className="flex flex-col gap-1 inline-flex ml-1">
+                        <a
+                          href={`mailto:${CONTACT_INFO.email}`}
+                          className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
+                        >
+                          {CONTACT_INFO.email}
+                        </a>
+                        <a
+                          href={`mailto:${CONTACT_INFO.alternateEmail}`}
+                          className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
+                        >
+                          {CONTACT_INFO.alternateEmail}
+                        </a>
+                      </div>
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone className="w-4 h-4 text-[#C3A572]" />
                     <span><strong className="text-[#4B3A2A]">Phone/WhatsApp:</strong>{' '}
-                      <a 
+                      <a
                         href={`tel:${CONTACT_INFO.phone}`}
                         className="text-[#C3A572] hover:text-[#4B3A2A] transition-colors duration-200"
                       >
@@ -289,7 +256,7 @@ export const ShippingPolicy: React.FC<ShippingPolicyProps> = ({ onNavigate }) =>
                     <span><strong className="text-[#4B3A2A]">Response Time:</strong> Within 24 hours for all shipping inquiries</span>
                   </div>
                 </div>
-                
+
                 <div className="mt-6 pt-4 border-t border-[#4B3A2A]/10">
                   <button
                     onClick={() => onNavigate?.('quote')}

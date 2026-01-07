@@ -6,7 +6,7 @@ import { products } from '../data/products';
 import { Product } from '../types/product';
 import { Container } from './Container';
 
-type PageType = 'home' | 'products' | 'product-detail' | 'export' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions' | 'shipping-policy' | 'cancellation-refund-policy' | 'contact';
+type PageType = 'home' | 'products' | 'product-detail' | 'quote' | 'checkout' | 'about' | 'privacy-policy' | 'terms-and-conditions' | 'shipping-policy' | 'cancellation-refund-policy' | 'contact';
 
 interface FeaturedProductsProps {
   onNavigate: (page: PageType, productId?: string) => void;
@@ -14,7 +14,7 @@ interface FeaturedProductsProps {
 
 export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onNavigate }) => {
   const { addToCart, setCartOpen } = useCartStore();
-  
+
   const featuredProducts = products.slice(0, 4).map((product: Product) => ({
     ...product,
     image: product.images?.[0] || product.image
@@ -25,17 +25,17 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onNavigate }
       <Container size="7xl" padding="md">
         <div className="text-center mb-20 max-w-4xl mx-auto">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#4B3A2A] mb-8 tracking-tight leading-tight">
-            Most Exported UPVC Door Solutions
+            Our Most Popular UPVC Door Solutions
           </h2>
           <p className="text-xl text-[#1A1A1A]/70 font-medium leading-relaxed">
-            Proven performers in international markets. Complete with export documentation and container-ready packaging.
+            High-quality UPVC doors trusted across India for durability, aesthetics, and premium finish.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
           {featuredProducts.map((product) => (
-            <Card key={product.id} variant="product" className="h-full flex flex-col">
-              <div 
+            <Card key={product.id} variant="product" className="h-full flex flex-col p-6 border-white/40 shadow-xl hover:shadow-2xl transition-all duration-500">
+              <div
                 className="h-64 bg-cover bg-center rounded-xl mb-6 overflow-hidden cursor-pointer hover:opacity-90 transition-opacity flex-shrink-0"
                 style={{ backgroundImage: `url(${product.image})` }}
                 onClick={() => onNavigate('product-detail', product.id)}
@@ -44,9 +44,9 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onNavigate }
                 onKeyDown={(e) => e.key === 'Enter' && onNavigate('product-detail', product.id)}
                 aria-label={`View details for ${product.name}`}
               />
-              
-              <div className="flex flex-col flex-grow">
-                <h3 
+
+              <div className="flex flex-col flex-1">
+                <h3
                   className="text-xl font-bold text-[#4B3A2A] mb-3 tracking-tight leading-tight cursor-pointer hover:text-[#C3A572] transition-colors line-clamp-2 min-h-[3rem]"
                   onClick={() => onNavigate('product-detail', product.id)}
                   role="button"
@@ -55,40 +55,25 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onNavigate }
                 >
                   {product.name}
                 </h3>
-                <p className="text-[#1A1A1A]/70 mb-6 leading-relaxed line-clamp-3 flex-grow">
+                <p className="text-[#1A1A1A]/70 mb-6 leading-relaxed line-clamp-3 text-sm flex-1">
                   {product.description}
                 </p>
               </div>
 
-              <div className="mt-auto">
-                <div className="mb-6">
-                  {product.exportPrice ? (
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-2xl font-bold text-[#4B3A2A]">
-                        {product.price}
-                      </span>
-                      <span className="text-sm text-[#4B3A2A]/80 font-medium">
-                        (INR)
-                      </span>
-                      <span className="mx-2 text-[#4B3A2A]/30">|</span>
-                      <span className="text-2xl font-bold text-[#C3A572]">
-                        {product.exportPrice}
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-2xl font-bold text-[#4B3A2A]">
-                        {product.price}
-                      </span>
-                      <span className="text-sm text-[#4B3A2A]/80 font-medium">
-                        (INR)
-                      </span>
-                    </div>
-                  )}
+              <div className="mt-8 space-y-4">
+                <div className="space-y-1">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-[#4B3A2A]">
+                      {product.price}
+                    </span>
+                    <span className="text-sm text-[#4B3A2A]/80 font-medium">
+                      (INR)
+                    </span>
+                  </div>
                 </div>
-                <Button 
-                  variant="default" 
-                  className="w-full"
+                <Button
+                  variant="default"
+                  className="w-full !rounded-xl py-4"
                   onClick={(e) => {
                     e.stopPropagation();
                     addToCart(product);

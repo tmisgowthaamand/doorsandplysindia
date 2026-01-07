@@ -1,21 +1,19 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 import { CONTACT_INFO } from '../constants/contact';
 import logo from '../../public/logo.png';
 import { Container } from './Container';
 
 export const Footer: React.FC = () => {
   const location = useLocation();
-  
+
   const quickLinks = [
     { label: 'Home', path: '/' },
     { label: 'Products', path: '/products' },
-    { label: 'Export', path: '/export' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' }
   ];
-  
+
   const legalLinks = [
     { label: 'Privacy Policy', path: '/privacy-policy' },
     { label: 'Terms of Service', path: '/terms-and-conditions' },
@@ -31,9 +29,9 @@ export const Footer: React.FC = () => {
           <section aria-labelledby="brand-heading" className="space-y-4">
             <h3 id="brand-heading" className="sr-only">Brand Information</h3>
             <div className="flex items-center">
-              <img 
-                src={logo} 
-                alt="Doors & Plys India Logo" 
+              <img
+                src={logo}
+                alt="Doors & Plys India Logo"
                 className="h-10 w-auto object-contain"
                 onError={(e) => {
                   console.error('Failed to load logo from:', e.currentTarget.src);
@@ -41,38 +39,8 @@ export const Footer: React.FC = () => {
               />
             </div>
             <p className="text-white/80 text-sm">
-              Premium UPVC doors and building materials manufacturer and exporter since 1995.
+              Premium UPVC doors and building materials manufacturer since 2021.
             </p>
-            <div className="flex space-x-4">
-              <a 
-                href="#" 
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a 
-                href="#" 
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a 
-                href="#" 
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a 
-                href="#" 
-                className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-300"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-            </div>
           </section>
 
           {/* Quick Links */}
@@ -83,11 +51,10 @@ export const Footer: React.FC = () => {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className={`${
-                      location.pathname === link.path 
-                        ? 'text-white font-medium' 
-                        : 'text-white/70 hover:text-white'
-                    } transition-colors duration-300 text-sm block py-1`}
+                    className={`${location.pathname === link.path
+                      ? 'text-white font-medium'
+                      : 'text-white/70 hover:text-white'
+                      } transition-colors duration-300 text-sm block py-1`}
                   >
                     {link.label}
                   </Link>
@@ -104,11 +71,10 @@ export const Footer: React.FC = () => {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className={`${
-                      location.pathname === link.path 
-                        ? 'text-white font-medium' 
-                        : 'text-white/70 hover:text-white'
-                    } transition-colors duration-300 text-sm block py-1`}
+                    className={`${location.pathname === link.path
+                      ? 'text-white font-medium'
+                      : 'text-white/70 hover:text-white'
+                      } transition-colors duration-300 text-sm block py-1`}
                   >
                     {link.label}
                   </Link>
@@ -129,12 +95,14 @@ export const Footer: React.FC = () => {
                   {CONTACT_INFO.phone}
                 </a>
               </p>
-              <p>
-                <a href={`mailto:${CONTACT_INFO.email}`} className="text-white hover:opacity-80 transition-opacity no-underline">
+              <div className="mt-2 flex flex-col gap-1">
+                <a href={`mailto:${CONTACT_INFO.email}`} className="text-sm text-white/80 hover:text-white transition-colors">
                   {CONTACT_INFO.email}
                 </a>
-              </p>
-              <p className="text-white">🌍 Export Inquiries Welcome</p>
+                <a href={`mailto:${CONTACT_INFO.alternateEmail}`} className="text-sm text-white/80 hover:text-white transition-colors">
+                  {CONTACT_INFO.alternateEmail}
+                </a>
+              </div>
             </address>
           </section>
         </div>
@@ -144,12 +112,12 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0">
               <p className="text-white/70 text-sm">
-                © 2025 {CONTACT_INFO.businessName}. All rights reserved.
+                © 2026 {CONTACT_INFO.businessName}. All rights reserved.
               </p>
             </div>
             <div className="flex items-center space-x-6">
               <p className="text-white/70 text-sm">
-                Trusted UPVC doors manufacturer since 1995
+                Trusted UPVC doors manufacturer since 2021
               </p>
             </div>
           </div>

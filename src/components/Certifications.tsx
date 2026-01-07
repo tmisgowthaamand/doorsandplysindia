@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from './Card';
-import { Award, Shield, Leaf, Globe } from 'lucide-react';
+import { Award, Shield, Leaf, CheckCircle } from 'lucide-react';
 
 export const Certifications: React.FC = () => {
   const certifications = [
@@ -20,9 +20,9 @@ export const Certifications: React.FC = () => {
       description: 'European Conformity'
     },
     {
-      icon: Globe,
-      name: 'Export Excellence',
-      description: 'Government Recognition'
+      icon: CheckCircle,
+      name: 'BIS Standards',
+      description: 'Bureau of Indian Standards'
     }
   ];
 
@@ -34,7 +34,7 @@ export const Certifications: React.FC = () => {
             Certifications & Standards
           </h2>
           <p className="text-xl text-[#1A1A1A]/70 max-w-2xl mx-auto">
-            Our commitment to quality is validated by international certifications
+            Our commitment to quality is validated by premium quality certifications
           </p>
         </div>
 

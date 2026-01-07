@@ -4,7 +4,7 @@ export interface FormTextareaProps extends Omit<React.TextareaHTMLAttributes<HTM
   label: string;
   placeholder?: string;
   value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement> | string) => void;
+  onChange?: any;
   onBlur?: (event: React.FocusEvent<HTMLTextAreaElement>) => void;
   required?: boolean;
   error?: string;
@@ -45,9 +45,8 @@ export const FormTextarea = React.forwardRef<HTMLTextAreaElement, FormTextareaPr
           id={id}
           name={name}
           rows={rows}
-          className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#4B3A2A] focus:border-transparent transition-colors ${
-            error ? 'border-red-500' : 'border-gray-300'
-          } ${inputClassName}`}
+          className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#4B3A2A] focus:border-transparent transition-colors ${error ? 'border-red-500' : 'border-gray-300'
+            } ${inputClassName}`}
           placeholder={placeholder}
           value={value}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {

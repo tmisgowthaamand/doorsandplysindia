@@ -7,12 +7,10 @@ import { ProductCategories } from './components/ProductCategories';
 import { FeaturedProducts } from './components/FeaturedProducts';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { Testimonials } from './components/Testimonials';
-import { ExportBanner } from './components/ExportBanner';
 import { QuoteCTA } from './components/QuoteCTA';
 import { Footer } from './components/Footer';
 import { Products } from './pages/Products';
 import { ProductDetailPage } from './pages/ProductDetail';
-import { Export } from './pages/Export';
 import { Quote } from './pages/Quote';
 import { Checkout } from './pages/Checkout';
 import { About } from './pages/About';
@@ -56,7 +54,7 @@ const AppContent = () => {
       <ScrollToTopButton />
       <Toast />
       <CartDrawer onNavigate={navigateTo} />
-      
+
       <Routes>
         <Route path="/" element={
           <>
@@ -67,13 +65,12 @@ const AppContent = () => {
               <FeaturedProducts onNavigate={navigateTo} />
               <WhyChooseUs />
               <Testimonials />
-              <ExportBanner />
               <QuoteCTA />
             </main>
             <Footer />
           </>
         } />
-        
+
         <Route path="/products" element={withNavigation(Products)} />
         <Route path="/products/:productId" element={
           (() => {
@@ -86,7 +83,6 @@ const AppContent = () => {
             return <ProductDetailWrapper />;
           })()
         } />
-        <Route path="/export" element={withNavigation(Export)} />
         <Route path="/quote" element={withNavigation(Quote)} />
         <Route path="/checkout" element={withNavigation(Checkout)} />
         <Route path="/about" element={withNavigation(About)} />
@@ -95,13 +91,13 @@ const AppContent = () => {
         <Route path="/shipping-policy" element={withNavigation(ShippingPolicy)} />
         <Route path="/cancellation-refund-policy" element={withNavigation(CancellationRefundPolicy)} />
         <Route path="/contact" element={withNavigation(Contact)} />
-        
+
         {/* 404 - Not Found */}
         <Route path="*" element={
           <div className="min-h-screen flex items-center justify-center">
             <div className="text-center">
               <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
-              <button 
+              <button
                 onClick={() => navigateTo('home')}
                 className="px-4 py-2 bg-[#4B3A2A] text-white rounded hover:bg-[#5a4a3a] transition-colors"
               >

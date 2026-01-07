@@ -16,13 +16,14 @@ interface FormData {
   email: string;
   company: string;
   phone: string;
-  country: string;
-  
+  city: string;
+  state: string;
+
   // Step 2: Order & Requirements
   productType: string;
   quantity: string;
   requirements: string;
-  internationalShipping: boolean;
+  expressDelivery: boolean;
   oemRequirement: boolean;
 }
 
@@ -37,11 +38,12 @@ export const QuoteForm: React.FC = () => {
     email: '',
     company: '',
     phone: '',
-    country: '',
+    city: '',
+    state: '',
     productType: '',
     quantity: '',
     requirements: '',
-    internationalShipping: false,
+    expressDelivery: false,
     oemRequirement: false
   });
 
@@ -82,7 +84,7 @@ export const QuoteForm: React.FC = () => {
     { value: '26-100', label: '26-100 pieces (Standard Order)' },
     { value: '101-500', label: '101-500 pieces (Bulk Order)' },
     { value: '501-1000', label: '501-1000 pieces (Large Order)' },
-    { value: '1000+', label: '1000+ pieces (Enterprise Order)' }
+    { value: '1000+', label: '1000+ pieces (Project Order)' }
   ];
 
   const validateStep = (step: number): boolean => {
@@ -94,7 +96,8 @@ export const QuoteForm: React.FC = () => {
       else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
       if (!formData.company.trim()) newErrors.company = 'Company name is required';
       if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
-      if (!formData.country.trim()) newErrors.country = 'Country is required';
+      if (!formData.city.trim()) newErrors.city = 'City is required';
+      if (!formData.state.trim()) newErrors.state = 'State is required';
     }
 
     if (step === 2) {
@@ -120,7 +123,7 @@ export const QuoteForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateStep(2)) return;
 
     setLoading(true);
@@ -129,7 +132,7 @@ export const QuoteForm: React.FC = () => {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // Simulate success
       setSubmitted(true);
       setFormData({
@@ -137,11 +140,12 @@ export const QuoteForm: React.FC = () => {
         email: '',
         company: '',
         phone: '',
-        country: '',
+        city: '',
+        state: '',
         productType: '',
         quantity: '',
         requirements: '',
-        internationalShipping: false,
+        expressDelivery: false,
         oemRequirement: false
       });
       setCurrentStep(1);
@@ -170,17 +174,14 @@ export const QuoteForm: React.FC = () => {
       {/* Progress Indicator */}
       <div className="mb-8">
         <div className="flex items-center justify-center space-x-4">
-          <div className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold transition-all duration-300 ${
-            currentStep >= 1 ? 'bg-[#4B3A2A] text-white' : 'bg-white/60 text-[#1A1A1A]/60'
-          }`}>
+          <div className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold transition-all duration-300 ${currentStep >= 1 ? 'bg-[#4B3A2A] text-white' : 'bg-white/60 text-[#1A1A1A]/60'
+            }`}>
             1
           </div>
-          <div className={`h-1 w-16 transition-all duration-300 ${
-            currentStep >= 2 ? 'bg-[#4B3A2A]' : 'bg-white/30'
-          }`} />
-          <div className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold transition-all duration-300 ${
-            currentStep >= 2 ? 'bg-[#4B3A2A] text-white' : 'bg-white/60 text-[#1A1A1A]/60'
-          }`}>
+          <div className={`h-1 w-16 transition-all duration-300 ${currentStep >= 2 ? 'bg-[#4B3A2A]' : 'bg-white/30'
+            }`} />
+          <div className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold transition-all duration-300 ${currentStep >= 2 ? 'bg-[#4B3A2A] text-white' : 'bg-white/60 text-[#1A1A1A]/60'
+            }`}>
             2
           </div>
         </div>
@@ -212,17 +213,17 @@ export const QuoteForm: React.FC = () => {
                     label="Full Name"
                     placeholder="Enter your full name"
                     value={formData.name}
-                    onChange={(value) => updateField('name', value)}
+                    onChange={(value) => updateField('name', typeof value === 'string' ? value : value.target.value)}
                     required
                     error={errors.name}
                   />
-                  
+
                   <FormInput
                     label="Email Address"
                     type="email"
                     placeholder="your.email@company.com"
                     value={formData.email}
-                    onChange={(value) => updateField('email', value)}
+                    onChange={(value) => updateField('email', typeof value === 'string' ? value : value.target.value)}
                     required
                     error={errors.email}
                   />
@@ -232,7 +233,7 @@ export const QuoteForm: React.FC = () => {
                   label="Company Name"
                   placeholder="Your company or organization name"
                   value={formData.company}
-                  onChange={(value) => updateField('company', value)}
+                  onChange={(value) => updateField('company', typeof value === 'string' ? value : value.target.value)}
                   required
                   error={errors.company}
                 />
@@ -243,19 +244,30 @@ export const QuoteForm: React.FC = () => {
                     type="tel"
                     placeholder="+1-234-567-8901"
                     value={formData.phone}
-                    onChange={(value) => updateField('phone', value)}
+                    onChange={(value) => updateField('phone', typeof value === 'string' ? value : value.target.value)}
                     required
                     error={errors.phone}
                   />
-                  
-                  <FormInput
-                    label="Country"
-                    placeholder="Enter your country"
-                    value={formData.country}
-                    onChange={(value) => updateField('country', value)}
-                    required
-                    error={errors.country}
-                  />
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormInput
+                      label="City"
+                      placeholder="Enter your city"
+                      value={formData.city}
+                      onChange={(value) => updateField('city', typeof value === 'string' ? value : value.target.value)}
+                      required
+                      error={errors.city}
+                    />
+
+                    <FormInput
+                      label="State"
+                      placeholder="Enter your state"
+                      value={formData.state}
+                      onChange={(value) => updateField('state', typeof value === 'string' ? value : value.target.value)}
+                      required
+                      error={errors.state}
+                    />
+                  </div>
                 </div>
 
                 <div className="flex justify-end pt-4">
@@ -296,7 +308,7 @@ export const QuoteForm: React.FC = () => {
                     required
                     error={errors.productType}
                   />
-                  
+
                   <FormSelect
                     label="Estimated Quantity"
                     value={formData.quantity}
@@ -311,7 +323,7 @@ export const QuoteForm: React.FC = () => {
                   label="Project Requirements & Notes"
                   placeholder="Please describe your project requirements, specifications, timeline, delivery location, and any custom needs..."
                   value={formData.requirements}
-                  onChange={(value) => updateField('requirements', value)}
+                  onChange={(value) => updateField('requirements', typeof value === 'string' ? value : value.target.value)}
                   required
                   rows={5}
                   error={errors.requirements}
@@ -319,14 +331,14 @@ export const QuoteForm: React.FC = () => {
 
                 <div className="space-y-4 pt-4 border-t border-white/20">
                   <h4 className="font-semibold text-[#4B3A2A]">Additional Services</h4>
-                  
+
                   <FormCheckbox
-                    label="International Shipping Required"
-                    value={formData.internationalShipping}
-                    onValueChange={(checked) => updateField('internationalShipping', checked)}
-                    description="Check if you need international delivery and export documentation"
+                    label="Express Delivery Required"
+                    value={formData.expressDelivery}
+                    onValueChange={(checked) => updateField('expressDelivery', checked)}
+                    description="Check if you need prioritized delivery for your project"
                   />
-                  
+
                   <FormCheckbox
                     label="OEM / White-label Supply Solutions"
                     value={formData.oemRequirement}
@@ -344,7 +356,7 @@ export const QuoteForm: React.FC = () => {
                     <ChevronLeft className="w-5 h-5" />
                     Back
                   </button>
-                  
+
                   <LoadingButton
                     type="submit"
                     loading={loading}
@@ -365,12 +377,12 @@ export const QuoteForm: React.FC = () => {
           <Alert variant="info" className="animate-fade-in">
             <div>
               <h3 className="font-semibold text-lg mb-2">Quote Request Received!</h3>
-              <p>Thank you for your interest in our UPVC door supply services. Our export team will reach out to you within 24 hours with a detailed quotation and next steps.</p>
+              <p>Thank you for your interest in our UPVC door supply services. Our supply team will reach out to you within 24 hours with a detailed quotation and next steps.</p>
               <div className="mt-4 p-4 bg-white/40 rounded-lg border border-white/30">
                 <p className="text-sm text-[#4B3A2A] font-medium">
-                  📧 Confirmation email sent<br/>
-                  📞 Expect a call from our export specialists<br/>
-                  📋 Quote will include pricing, logistics, and documentation<br/>
+                  📧 Confirmation email sent<br />
+                  📞 Expect a call from our supply specialists<br />
+                  📋 Quote will include pricing, logistics, and delivery timeline<br />
                   📞 Questions? Call {CONTACT_INFO.phone} or email {CONTACT_INFO.email}
                 </p>
               </div>

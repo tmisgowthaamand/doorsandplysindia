@@ -5,7 +5,7 @@ import { Product, CartItem } from '../types/product';
 interface CartStore {
   items: CartItem[];
   isOpen: boolean;
-  addToCart: (product: Product, quantity?: number, exportRequest?: boolean) => void;
+  addToCart: (product: Product, quantity?: number) => void;
   removeFromCart: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
@@ -22,19 +22,18 @@ export const useCartStore = create<CartStore>()(
       items: [],
       isOpen: false,
 
-      addToCart: (product: Product, quantity = 1, exportRequest = false) => {
+      addToCart: (product: Product, quantity = 1) => {
         const existingItem = get().getCartItem(product.id);
-        
+
         if (existingItem) {
           // Update existing item quantity
           set((state) => ({
             items: state.items.map((item) =>
               item.product.id === product.id
-                ? { 
-                    ...item, 
-                    quantity: item.quantity + quantity,
-                    exportRequest: exportRequest || item.exportRequest
-                  }
+                ? {
+                  ...item,
+                  quantity: item.quantity + quantity
+                }
                 : item
             ),
           }));
@@ -47,7 +46,6 @@ export const useCartStore = create<CartStore>()(
                 product,
                 quantity,
                 addedAt: new Date(),
-                exportRequest,
               },
             ],
           }));
