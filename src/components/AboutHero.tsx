@@ -12,7 +12,7 @@ export const AboutHero: React.FC<AboutHeroProps> = ({ onNavigate }) => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1566492031773-4f4e44671d66?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80)'
+          backgroundImage: 'url(https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=2000&q=80)'
         }}
       >
         <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>

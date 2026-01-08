@@ -4,19 +4,19 @@ import { Card } from './Card';
 export const FactoryGallery: React.FC = () => {
   const galleryItems = [
     {
-      image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80',
       title: 'State-of-the-Art Manufacturing',
       description: 'Modern facilities equipped with precision machinery'
     },
     {
-      image: 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80',
       title: 'Quality Control Process',
       description: 'Rigorous testing ensures every product meets our standards'
     },
     {
-      image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671d66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?auto=format&fit=crop&w=800&q=80',
       title: 'Expert Craftsmanship',
-      description: 'Skilled artisans bringing decades of experience'
+      description: 'Skilled artisans bringing years of specialized experience'
     }
   ];
 
@@ -35,7 +35,7 @@ export const FactoryGallery: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {galleryItems.map((item, index) => (
             <Card key={index} variant="product" hover={true}>
-              <div 
+              <div
                 className="h-64 bg-cover bg-center rounded-lg mb-6"
                 style={{ backgroundImage: `url(${item.image})` }}
               >

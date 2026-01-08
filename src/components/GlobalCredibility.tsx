@@ -18,9 +18,9 @@ export const GlobalCredibility: React.FC = () => {
     },
     {
       icon: Calendar,
-      number: '25+',
+      number: '5+',
       label: 'Years of Experience',
-      description: 'Decades of expertise in wood manufacturing'
+      description: 'Expertise in premium door manufacturing'
     },
     {
       icon: Settings,
